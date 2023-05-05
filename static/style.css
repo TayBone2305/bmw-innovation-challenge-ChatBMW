@@ -1,0 +1,64 @@
+body {
+    background-color: #2d2d2d;
+    color: white;
+    font-family: monaco, Consolas, Lucida Console, monospace;
+    text-align: center;
+    padding-top: 5vh;
+}
+img {
+    margin: 4vw;
+    width: 50vw;
+    height: auto;
+}
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+}
+button:hover .inactive {
+    background-color: Transparent;
+    border-style: none;
+    transform: scale(1.1);
+}
+.rotate {
+    animation: rotation 2s infinite linear;
+}
+.pulse {
+    animation: pulse 1.5s infinite linear;
+}
+#result-text {
+    margin: 2vh 10vw 0 10vw;
+    max-height: 30vh;
+    padding: 2vw;
+    overflow-y: scroll;
+}
+
+.displayed {
+    border: 1px solid #888;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(0.8);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

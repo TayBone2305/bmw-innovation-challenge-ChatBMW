@@ -22,7 +22,9 @@ function saveRecording(audioBlob) {
         body: fd
     }).then(async res => {
         const result = await res.json();
-        document.getElementById("result-text").innerHTML = result.message;
+        const resultText = document.getElementById("result-text");
+        resultText.classList.add("displayed");
+        resultText.innerHTML = result.message;
         bmwButton.classList.remove("rotate");
         bmwButton.classList.add("inactive");
     });

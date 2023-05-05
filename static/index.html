@@ -4,66 +4,14 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 		<title>ChatBMW</title>
-		<style>
-			body {
-				background-color: #F2F2F2;
-				font-family: monaco, Consolas, Lucida Console, monospace;
-				text-align: center;
-				padding-top: 50px;
-			}
-			img {
-				margin: 5px;
-			}
-			button {
-				background-color: Transparent;
-				background-repeat:no-repeat;
-				border: none;
-				cursor:pointer;
-				overflow: hidden;
-				transition: all 0.2s ease-in-out;
-			}
-			button:hover .inactive {
-				background-color: Transparent;
-				border-style: none;
-				transform: scale(1.1);
-			}
-			.rotate {
-					animation: rotation 2s infinite linear;
-			}
-			.pulse {
-				animation: pulse 1.5s infinite linear;
-			}
-
-			@keyframes rotation {
-				from {
-					transform: rotate(0deg);
-				}
-				to {
-					transform: rotate(359deg);
-				}
-			}
-
-			@keyframes pulse {
-				0% {
-					transform: scale(1);
-				}
-
-				40% {
-					transform: scale(0.8);
-				}
-
-				100% {
-					transform: scale(1);
-				}
-			}
-		</style>
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
 		<h1>Ask ChatBMW!</h1>
 		<div class="container">
 		  <div class="vertical-center">
 			  <button type="button" onclick="toggleRecording()">
-				  <img src="bmw.svg" id="bmw-button" class="inactive" height ="100" width="100" alt="record button"/>
+				  <img src="bmw.svg" id="bmw-button" class="inactive" alt="record button"/>
 				</button>
 			  <p id="result-text"></p>
 		  </div>
