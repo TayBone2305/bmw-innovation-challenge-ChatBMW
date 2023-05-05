@@ -2,7 +2,7 @@
   "name": "chatbmw",
   "version": "1.0.0",
   "description": "chatbot to answer questions about the BMW user manual by speech input and output",
-  "main": "index.js",
+  "main": "static/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -20,7 +20,7 @@ function saveRecording(audioBlob) {
     fetch('http://localhost:3000/convertAudio', {
         method: 'POST',
         body: fd
-    }).then();
+    }).then(res => console.log("res: " + JSON.stringify(res)));
 }
 
 function toggleRecording() {

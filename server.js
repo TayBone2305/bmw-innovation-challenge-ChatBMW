@@ -28,6 +28,10 @@ const storage = multer.diskStorage(
 const upload = multer( { storage: storage } );
 const type = upload.single('upl');
 
+app.get('/', (req, res) => {
+    res.sendFile(join(__dirname, '/static/index.html'));
+});
+
 
 app.post('/convertAudio', type, (req, res) => {
     console.log("called convertAudio endpoint");
@@ -38,9 +42,11 @@ app.post('/convertAudio', type, (req, res) => {
     console.log("start recognizing");
 
     speechRecognizer.recognizeOnceAsync(result => {
+        let successful = false;
         switch (result.reason) {
             case sdk.ResultReason.RecognizedSpeech:
                 console.log(`RECOGNIZED: Text=${result.text}`);
+                successful = true;
                 break;
             case sdk.ResultReason.NoMatch:
                 console.log("NOMATCH: Speech could not be recognized.");
@@ -57,6 +63,11 @@ app.post('/convertAudio', type, (req, res) => {
                 break;
         }
         speechRecognizer.close();
+        if (successful) {
+            res.status(200).send({ message: result.text });
+        } else {
+            res.status(500).send({ message: "error: failed to recognize text" });
+        }
     });
 });
 
