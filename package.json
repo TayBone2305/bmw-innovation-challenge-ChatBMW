@@ -1,5 +1,17 @@
 {
+  "name": "chatbmw",
+  "version": "1.0.0",
+  "description": "chatbot to answer questions about the BMW user manual by speech input and output",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "microsoft-cognitiveservices-speech-sdk": "^1.28.0"
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "microsoft-cognitiveservices-speech-sdk": "^1.28.0",
+    "multer": "^1.4.5-lts.1"
   }
 }

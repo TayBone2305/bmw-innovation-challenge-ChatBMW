@@ -10,6 +10,9 @@
 				text-align: center;
 				padding-top: 50px;
 			}
+			img {
+				margin: 5px;
+			}
 			button {
 				background-color: Transparent;
 				background-repeat:no-repeat;
@@ -18,7 +21,7 @@
 				overflow: hidden;
 				transition: all 0.2s ease-in-out;
 			}
-			button:hover {
+			button:hover .inactive {
 				background-color: Transparent;
 				border-style: none;
 				transform: scale(1.1);
@@ -44,7 +47,7 @@
 					transform: scale(1);
 				}
 
-				30% {
+				40% {
 					transform: scale(0.8);
 				}
 
@@ -59,7 +62,7 @@
 		<div class="container">
 		  <div class="vertical-center">
 			<button type="button" onclick="toggleRecording()">
-				<img src="bmw.svg" id="bmw-button" height ="100" width="100" alt="record button"/>
+				<img src="bmw.svg" id="bmw-button" class="inactive" height ="100" width="100" alt="record button"/>
 			</button>
 		  </div>
 		</div>
