@@ -64,6 +64,7 @@ app.post('/convertAudio', type, (req, res) => {
         }
         speechRecognizer.close();
         if (successful) {
+            console.log("sending success message");
             res.status(200).send({ message: result.text });
         } else {
             res.status(500).send({ message: "error: failed to recognize text" });

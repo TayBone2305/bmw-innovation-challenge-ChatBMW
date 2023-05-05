@@ -20,20 +20,24 @@ function saveRecording(audioBlob) {
     fetch('http://localhost:3000/convertAudio', {
         method: 'POST',
         body: fd
-    }).then(res => console.log("res: " + JSON.stringify(res)));
+    }).then(async res => {
+        const result = await res.json();
+        document.getElementById("result-text").innerHTML = result.message;
+        bmwButton.classList.remove("rotate");
+        bmwButton.classList.add("inactive");
+    });
 }
 
 function toggleRecording() {
     recording = !recording;
     if (recording) {
-        bmwButton.classList.remove("rotate");
+        document.getElementById("result-text").innerHTML = "";
         bmwButton.classList.remove("inactive");
         bmwButton.classList.add("pulse");
         chunks.length = 0;
         mediaRecorder.start();
     } else {
         bmwButton.classList.remove("pulse");
-        bmwButton.classList.remove("inactive");
         bmwButton.classList.add("rotate");
         mediaRecorder.stop();
     }
