@@ -1,9 +1,9 @@
+"use strict";
+
+var sdk = require("microsoft-cognitiveservices-speech-sdk");
+var readline = require("readline");
+
 function TextToSpeech() {
-
-    "use strict";
-
-    var sdk = require("microsoft-cognitiveservices-speech-sdk");
-    var readline = require("readline");
 
     var audioFile = "whatstheweatherlike.wav";
     // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
