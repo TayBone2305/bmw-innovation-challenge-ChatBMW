@@ -1,4 +1,4 @@
-(function() {
+function TextToSpeech() {
 
     "use strict";
 
@@ -36,4 +36,4 @@
     synthesizer = null;
   });
   console.log("Now synthesizing to: " + audioFile);
-}());
+}();
