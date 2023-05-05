@@ -24,7 +24,10 @@
 			box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
 		}
 		.rotate {
-		    animation: rotation 2s infinite linear;
+		    	animation: rotation 2s infinite linear;
+		}
+		.pulse {
+			animation: pulse 1.5s infinite linear;
 		}
 
 		@keyframes rotation {
@@ -33,6 +36,20 @@
 		    }
 		    to {
 			transform: rotate(359deg);
+		    }
+		}
+		
+		@keyframes pulse {
+		    0% {
+			transform: scale(0.75);
+		    }
+
+		    30% {
+			transform: scale(1);
+		    }
+
+		    100% {
+			transform: scale(0.75);
 		    }
 		}
 	</style>
