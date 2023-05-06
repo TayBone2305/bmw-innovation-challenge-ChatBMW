@@ -4,6 +4,8 @@ let mediaRecorder = null;
 const chunks = [];
 const audioType = 'audio/wav';
 
+const resultTextElement = document.getElementById("result-text");
+
 navigator.mediaDevices.getUserMedia({audio: true})
     .then(stream => {
         mediaRecorder = new MediaRecorder(stream);
@@ -22,9 +24,12 @@ function saveRecording(audioBlob) {
         body: fd
     }).then(async res => {
         const result = await res.json();
-        const resultText = document.getElementById("result-text");
-        resultText.classList.add("displayed");
-        resultText.innerHTML = result.message;
+        resultTextElement.classList.add("displayed");
+        resultTextElement.innerHTML = result.message;
+
+        const audio = new Audio('result.wav');
+        await audio.play();
+
         bmwButton.classList.remove("rotate");
         bmwButton.classList.add("inactive");
     });
@@ -33,6 +38,7 @@ function saveRecording(audioBlob) {
 function toggleRecording() {
     recording = !recording;
     if (recording) {
+        resultTextElement.classList.remove("displayed");
         document.getElementById("result-text").innerHTML = "";
         bmwButton.classList.remove("inactive");
         bmwButton.classList.add("pulse");

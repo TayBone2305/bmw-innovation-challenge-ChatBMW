@@ -64,13 +64,51 @@ app.post('/convertAudio', type, (req, res) => {
         }
         speechRecognizer.close();
         if (successful) {
-            console.log("sending success message");
-            res.status(200).send({ message: result.text });
+            readText(result.text, res)/*.then(r => {
+                console.log("sending success message");
+                res.status(200).send({ message: result.text });
+            });*/
         } else {
             res.status(500).send({ message: "error: failed to recognize text" });
         }
     });
 });
+
+async function readText(text, res) {
+    console.log("reading text");
+    const audioFile = "static/result.wav";
+    // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
+    const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
+    const audioConfig = sdk.AudioConfig.fromAudioFileOutput(audioFile);
+    console.log("config");
+
+    // The language of the voice that speaks.
+    speechConfig.speechSynthesisVoiceName = "de-DE-AmalaNeural";
+
+    // Create the speech synthesizer.
+    let synthesizer = new sdk.SpeechSynthesizer(speechConfig, audioConfig);
+
+    // Start the synthesizer and wait for a result.
+    synthesizer.speakTextAsync(text,
+        function (result) {
+            if (result.reason === sdk.ResultReason.SynthesizingAudioCompleted) {
+                console.log("synthesis finished.");
+            } else {
+                console.error("Speech synthesis canceled, " + result.errorDetails +
+                    "\nDid you set the speech resource key and region values?");
+            }
+            synthesizer.close();
+            synthesizer = null;
+            console.log("sending success message");
+            res.status(200).send({ message: text });
+        },
+        function (err) {
+            console.trace("err - " + err);
+            synthesizer.close();
+            synthesizer = null;
+        });
+    console.log("Now synthesizing to: " + audioFile);
+}
 
 app.listen(PORT);
 console.log(`Server listening on port ${PORT}`);
